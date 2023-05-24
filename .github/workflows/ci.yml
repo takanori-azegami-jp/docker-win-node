@@ -1,0 +1,21 @@
+name: Docker Image CI
+# masterブランチにプッシュしたときjobsに記述した操作を行う
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: echo docker and compose version
+        run: docker -v && docker-compose -v
+
+      - name: Build Docker image
+        run: docker build -t my-docker-image .
+
+      - name: Run node version test
+        run: docker run my-docker-image node -v
