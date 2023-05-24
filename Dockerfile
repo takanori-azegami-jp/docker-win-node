@@ -13,5 +13,4 @@ COPY . .
 # Listen port
 EXPOSE 3000
 
-# Run Node.js
-CMD [ "node", "server.js" ]
+ENTRYPOINT /bin/bash
